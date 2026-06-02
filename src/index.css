@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Space Grotesk", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* Custom Cinema-Noir colors */
+  --color-noir-950: #050505;
+  --color-noir-900: #0a0a0c;
+  --color-noir-850: #121216;
+  --color-noir-800: #191921;
+  --color-noir-700: #252530;
+  --color-noir-600: #363647;
+  --color-crimson-400: #f82b3b;
+  --color-crimson-500: #dc0d1c;
+  --color-crimson-600: #b10612;
+  --color-crimson-700: #88000a;
+}
+
+body {
+  background-color: var(--color-noir-950);
+  color: #f3f4f6;
+  font-family: var(--font-display), var(--font-sans);
+  overflow-x: hidden;
+}
+
+/* Elegant visual transitions for theme items */
+.cinematic-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(25, 25, 33, 0.4) 25%,
+    rgba(37, 37, 48, 0.6) 37%,
+    rgba(25, 25, 33, 0.4) 63%
+  );
+  background-size: 400% 100%;
+  animation: shimmer 1.4s ease infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}
+
