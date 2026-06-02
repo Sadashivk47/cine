@@ -3,7 +3,6 @@ import { getPopularMovies, searchMovies } from "../api/tmdb";
 import { getMovieSuggestionFromMood } from "../api/ai";
 import type { Movie } from "../types/movie";
 import MovieCard, { SkeletonCard } from "../components/MovieCard";
-import "../styles/home.css";
 import useDebounce from "../hooks/useDebounce";
 
 import { 
@@ -364,7 +363,6 @@ export default function Home({
 
   return (
     <div className="w-full">
-      {/* Spotlight Core Landscape Hero Header starting from absolute topmost screen */}
       {spotlightMovie && (() => {
         return (
           <section className="relative w-full h-[85vh] sm:h-[90vh] lg:h-[98vh] flex items-end overflow-hidden pb-4 sm:pb-6 pt-36 sm:pt-44">
@@ -512,7 +510,7 @@ export default function Home({
                   <AlertCircle className="w-4 h-4 mt-0.5 shrink-0 text-amber-500" />
                   <div>
                     <span className="font-extrabold block text-amber-300 uppercase text-[10px] tracking-wider mb-0.5">Gemini Access Restricted</span>
-                    Your configured <code>GEMINI_API_KEY</code> appears to be reported as leaked or is invalid. Mood matching has fallen back to local rules. Please go to your Google AI Studio Settings to rotate your API key.
+                    Your configured <code>GEMINI_API_KEY</code> appears to be invalid or deactivated. Mood matching has automatically transitioned to local curation. Please verify your system configuration or environment variables.
                   </div>
                 </div>
               )}
@@ -681,7 +679,6 @@ export default function Home({
           </div>
         </div>
 
-        {/* Genre Pills */}
         <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none select-none">
           {genresList.map(g => (
             <button

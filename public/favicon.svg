@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <defs>
+    <linearGradient id="crimsonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff2c3c" />
+      <stop offset="60%" stop-color="#dc0d1c" />
+      <stop offset="100%" stop-color="#88000a" />
+    </linearGradient>
+    <linearGradient id="silverGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#9ca3af" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+
+  <rect width="128" height="128" rx="28" fill="#050505" stroke="#1d1d26" stroke-width="2"/>
+
+  <g filter="url(#shadow)">
+    <path d="M40 32C40 32 20 48 20 64C20 80 40 96 40 96H45C45 96 28 80 28 64C28 48 45 32 45 32H40Z" fill="url(#silverGrad)" opacity="0.9" />
+    <path d="M40 28C60 28 92 44 92 64C92 84 60 100 40 100C46 88 56 64 40 28Z" fill="url(#crimsonGrad)" />
+    <path d="M56 48L76 64L56 80V48Z" fill="#ffffff" />
+  </g>
+</svg>

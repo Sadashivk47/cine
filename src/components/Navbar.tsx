@@ -1,6 +1,5 @@
 import React from "react";
 import { Heart, Film, Search } from "lucide-react";
-import "./navbar.css";
 
 interface NavbarProps {
   activeTab: "discover" | "favorites";
@@ -34,7 +33,6 @@ export default function Navbar({
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-transparent flex flex-col pointer-events-none">
-      {/* Topmost Premium Announcement Bar */}
       <div className="w-full bg-[#050505] border-b border-white/5 py-2 px-4 text-center text-[11px] sm:text-xs text-white font-display tracking-wider flex flex-wrap items-center justify-center gap-x-2 gap-y-1 pointer-events-auto select-none">
         <span>Discover trending releases, curated recommendations, and cinematic gems updated daily</span>
         <button 
@@ -45,7 +43,6 @@ export default function Navbar({
         </button>
       </div>
 
-      {/* Main Navigation - Completely Transparent, Floating Capsules */}
       <div className="w-full px-4 sm:px-6 lg:px-8 py-4 sm:py-5 flex items-center justify-between gap-4 pointer-events-auto">
         
         <div className="flex items-center gap-3 sm:gap-6 md:gap-8 min-w-0">
@@ -59,8 +56,8 @@ export default function Navbar({
             
             <div className="bg-black/90 border border-noir-800/90 rounded-full px-3 py-1 transition-all duration-300 group-hover:border-noir-700">
               <span className="font-sans font-black tracking-widest text-sm sm:text-base whitespace-nowrap flex items-center uppercase">
-                <span className="text-crimson-500">CINE</span>
-                <span className="text-white font-light">STREAM</span>
+                <span className="text-crimson-500 font-black">CINE</span>
+                <span className="text-white font-black">STREAM</span>
               </span>
             </div>
           </div>

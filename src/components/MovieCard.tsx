@@ -48,7 +48,7 @@ export default function MovieCard({
           </div>
         )}
 
-        <div className="absolute inset-0 bg-black/15 opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col justify-end p-3.5">
+        <div className="absolute inset-0 bg-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col justify-end p-3.5">
           <button
             onClick={(e) => {
               e.stopPropagation();
