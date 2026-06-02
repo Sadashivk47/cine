@@ -346,6 +346,45 @@ Topics explored included:
 The final implementation was adapted and customized to fit the existing project architecture and personal design decisions.
 
 ---
+## Prompt — Learning Tailwind CSS
+
+### Query
+
+Before implementing the final UI, explain:
+
+- What Tailwind CSS is
+- Why utility-first styling is used
+- How responsive classes work
+- How flexbox and grid layouts are created
+- How spacing, typography, and colors are managed
+
+### What I Learned
+
+I learned how Tailwind allows rapid UI development through utility classes instead of writing large stylesheet files.
+
+Topics explored:
+
+- Flexbox
+- CSS Grid
+- Responsive breakpoints
+- Typography scaling
+- Spacing systems
+- Hover states
+- Dark mode design
+- Component composition
+
+### Outcome
+
+Applied Tailwind concepts while building:
+
+- Hero section
+- Navbar
+- Movie cards
+- Search interface
+- Mood Matcher section
+- Favorites page
+
+The final implementation was customized and integrated into the existing React architecture rather than copied directly from generated outputs.
 
 # Key Features Implemented
 
