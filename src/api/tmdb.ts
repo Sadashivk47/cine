@@ -1,3 +1,4 @@
+import axios from "axios";
 import { Movie } from "../types/movie";
 
 export interface FetchMoviesResponse {
@@ -11,18 +12,15 @@ export const getPopularMovies = async (
   genre: string = "All",
   type: string = "all"
 ): Promise<FetchMoviesResponse> => {
-  let url = `/api/movies?page=${page}`;
+  const params: Record<string, any> = { page };
   if (genre !== "All") {
-    url += `&genre=${encodeURIComponent(genre)}`;
+    params.genre = genre;
   }
   if (type !== "all") {
-    url += `&type=${type}`;
+    params.type = type;
   }
-  const res = await fetch(url);
-  if (!res.ok) {
-    throw new Error("Failed to fetch popular movies from server.");
-  }
-  return res.json();
+  const response = await axios.get<FetchMoviesResponse>("/api/movies", { params });
+  return response.data;
 };
 
 export const searchMovies = async (
@@ -31,27 +29,21 @@ export const searchMovies = async (
   genre: string = "All",
   type: string = "all"
 ): Promise<FetchMoviesResponse> => {
-  let url = `/api/movies?page=${page}`;
+  const params: Record<string, any> = { page };
   if (query) {
-    url += `&q=${encodeURIComponent(query)}`;
+    params.q = query;
   }
   if (genre !== "All") {
-    url += `&genre=${encodeURIComponent(genre)}`;
+    params.genre = genre;
   }
   if (type !== "all") {
-    url += `&type=${type}`;
+    params.type = type;
   }
-  const res = await fetch(url);
-  if (!res.ok) {
-    throw new Error("Failed to search movies from server.");
-  }
-  return res.json();
+  const response = await axios.get<FetchMoviesResponse>("/api/movies", { params });
+  return response.data;
 };
 
 export const getFeaturedMovie = async (): Promise<Movie> => {
-  const res = await fetch("/api/movies/featured");
-  if (!res.ok) {
-    throw new Error("Failed to fetch featured movie");
-  }
-  return res.json();
+  const response = await axios.get<Movie>("/api/movies/featured");
+  return response.data;
 };

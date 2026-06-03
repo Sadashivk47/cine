@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Navbar from "./components/Navbar";
 import AppRoutes from "./routes/AppRoutes";
 import { Movie } from "./types/movie";
@@ -168,8 +169,8 @@ export default function App() {
 
   const handleWatchTrailer = async (movie: Movie) => {
     try {
-      const response = await fetch(`/api/movies/${movie.id}/trailer`);
-      const data = await response.json();
+      const response = await axios.get(`/api/movies/${movie.id}/trailer`);
+      const data = response.data;
       if (data && data.videoId) {
         setVideoOverlayUrl(`https://www.youtube.com/embed/${data.videoId}?autoplay=1&mute=0&rel=0&modestbranding=1`);
       } else {

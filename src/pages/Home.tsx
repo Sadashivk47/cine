@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import axios from "axios";
 import { getPopularMovies, searchMovies } from "../api/tmdb";
 import { getMovieSuggestionFromMood } from "../api/ai";
 import type { Movie } from "../types/movie";
@@ -111,9 +112,9 @@ export default function Home({
     setSpotlightTrailerId("");
 
     let active = true;
-    fetch(`/api/movies/${spotlightMovie.id}/trailer`)
-      .then(res => res.json())
-      .then(data => {
+    axios.get(`/api/movies/${spotlightMovie.id}/trailer`)
+      .then(response => {
+        const data = response.data;
         if (active && data && data.videoId) {
           setSpotlightTrailerId(data.videoId);
         }
