@@ -660,23 +660,34 @@ export default function Home({
           </div>
 
           <div className="relative w-full lg:w-96">
-            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4.5 h-4.5 text-gray-500" />
+            <Search className={`absolute left-3.5 top-1/2 -translate-y-1/2 w-4.5 h-4.5 text-gray-500 transition-colors duration-200 ${
+              query !== debouncedQuery ? "text-crimson-500 animate-pulse" : ""
+            }`} />
             <input
               type="text"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search movie directories..."
-              className="w-full bg-noir-950 text-white rounded-xl pl-10 pr-4 py-3 text-sm border border-noir-800 focus:outline-none focus:border-crimson-500 focus:ring-1 focus:ring-crimson-500/50 placeholder:text-gray-600 transition"
+              className={`w-full bg-noir-950 text-white rounded-xl pl-10 pr-24 py-3 text-sm border focus:outline-none focus:ring-1 focus:ring-crimson-500/50 placeholder:text-gray-600 transition-all duration-300 ${
+                query !== debouncedQuery ? "border-crimson-500/50 ring-1 ring-crimson-500/30 font-medium" : "border-noir-800 focus:border-crimson-500"
+              }`}
               id="input-search"
             />
-            {query && (
-              <button 
-                onClick={() => setQuery("")}
-                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-500 hover:text-white text-xs font-mono font-bold cursor-pointer"
-              >
-                CLEAR
-              </button>
-            )}
+            <div className="absolute right-3.5 top-1/2 -translate-y-1/2 flex items-center gap-2">
+              {query !== debouncedQuery && (
+                <span className="text-[9px] bg-crimson-950/90 text-crimson-400 border border-crimson-800/60 px-1.5 py-0.5 rounded font-mono font-bold animate-pulse tracking-wide select-none">
+                  DEBOUNCING...
+                </span>
+              )}
+              {query && (
+                <button 
+                  onClick={() => setQuery("")}
+                  className="text-gray-500 hover:text-white text-xs font-mono font-bold cursor-pointer"
+                >
+                  CLEAR
+                </button>
+              )}
+            </div>
           </div>
         </div>
 

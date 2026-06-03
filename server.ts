@@ -89,13 +89,9 @@ const FALLBACK_TMDB_KEYS = [
   "ca3d1d188540fb805ad5b191ebc5d013"
 ];
 
-let isTMDBDisabledBy401 = false;
+const invalidTMDBKeys = new Set<string>();
 
 async function fetchFromTMDB(endpoint: string, params: Record<string, string | number> = {}): Promise<any> {
-  if (isTMDBDisabledBy401) {
-    throw new Error("TMDB query bypassed due to inactive or invalid credentials.");
-  }
-
   const customKey = (
     process.env.TMDB_API_KEY ||
     process.env.VITE_TMDB_KEY ||
@@ -105,17 +101,17 @@ async function fetchFromTMDB(endpoint: string, params: Record<string, string | n
   ).replace(/^["']|["']$/g, "").trim();
 
   const keysToTry: string[] = [];
-  if (customKey && customKey !== "YOUR_TMDB_KEY_HERE" && customKey !== "") {
+  if (customKey && customKey !== "YOUR_TMDB_KEY_HERE" && customKey !== "" && !invalidTMDBKeys.has(customKey)) {
     keysToTry.push(customKey);
   }
   FALLBACK_TMDB_KEYS.forEach(k => {
-    if (!keysToTry.includes(k)) {
+    if (!keysToTry.includes(k) && !invalidTMDBKeys.has(k)) {
       keysToTry.push(k);
     }
   });
 
   if (keysToTry.length === 0) {
-    throw new Error("No keys available for TMDB.");
+    throw new Error("No active TMDB keys available. All configured keys are blacklisted on 401.");
   }
 
   const baseUrl = "https://api.themoviedb.org";
@@ -148,7 +144,8 @@ async function fetchFromTMDB(endpoint: string, params: Record<string, string | n
         return await response.json();
       }
       if (response.status === 401) {
-        isTMDBDisabledBy401 = true;
+        console.warn(`TMDB Key failed with 401, blacklisting key: ${activeKey.substring(0, 6)}...`);
+        invalidTMDBKeys.add(activeKey);
       }
       const errText = await response.text();
       lastError = new Error(`TMDB responded with status ${response.status}: ${errText}`);
